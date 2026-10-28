@@ -175,13 +175,13 @@ docs/              Delivery status, release guide and screenshots
 
 ## Documentation
 
-| Document                                        | Language |
-| ----------------------------------------------- | -------- |
-| [Contributing guide](CONTRIBUTING.md)           | Turkish  |
-| [Delivery checklist](docs/TESLIMAT_KONTROLU.md) | Turkish  |
-| [Test report](docs/TEST_RAPORU.md)              | Turkish  |
-| [Math support](docs/MATEMATIK_DESTEGI.md)       | Turkish  |
-| [Release guide](docs/YAYINLAMA.md)              | Turkish  |
+| Document                                        | Language                               |
+| ----------------------------------------------- | -------------------------------------- |
+| [Contributing guide](CONTRIBUTING.md)           | English, [Turkish](CONTRIBUTING.tr.md) |
+| [Delivery checklist](docs/TESLIMAT_KONTROLU.md) | Turkish                                |
+| [Test report](docs/TEST_RAPORU.md)              | Turkish                                |
+| [Math support](docs/MATEMATIK_DESTEGI.md)       | Turkish                                |
+| [Release guide](docs/YAYINLAMA.md)              | Turkish                                |
 
 ## Dependencies and license
 
