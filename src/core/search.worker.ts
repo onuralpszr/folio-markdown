@@ -20,31 +20,20 @@ self.onmessage = (
       matches.push({ 0: m[0], index: m.index! });
       if (matches.length === 10000) break;
     }
-    let index = 0;
+    // Replace only the selected match with a sticky copy so $ patterns match Replace all.
+    const at = (offset: number) => {
+      const single = new RegExp(pattern, expression.flags.replace('g', '') + 'y');
+      single.lastIndex = offset;
+      return single;
+    };
     const result =
       replacement === undefined
         ? undefined
         : targetIndex === undefined
           ? source.replace(expression, replacement)
-          : source.replace(expression, (...args) => {
-              const match = args[0],
-                named = typeof args.at(-1) === 'object',
-                offset = args.at(named ? -3 : -2) as number;
-              if (index++ !== targetIndex) return match;
-              return replacement.replace(/\$(\$|&|`|'|\d{1,2})/g, (token, k) =>
-                k === '$'
-                  ? '$'
-                  : k === '&'
-                    ? match
-                    : k === '`'
-                      ? source.slice(0, offset)
-                      : k === "'"
-                        ? source.slice(offset + match.length)
-                        : typeof args[+k] === 'string'
-                          ? args[+k]
-                          : token,
-              );
-            });
+          : matches[targetIndex]
+            ? source.replace(at(matches[targetIndex].index), replacement)
+            : source;
     self.postMessage({ matches, result });
   } catch (e: any) {
     self.postMessage({ matches: [], error: e.message });
