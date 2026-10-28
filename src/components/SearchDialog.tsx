@@ -46,7 +46,10 @@ export function SearchDialog({
     };
   }, [source, query, regex, caseSensitive, wholeWord]);
   async function replace(all: boolean) {
-    if (all && !window.confirm(`${matches.length} eşleşme değiştirilecek. Devam edilsin mi?`))
+    if (
+      all &&
+      !window.confirm(`${matches.length} ${ui('eşleşme değiştirilecek. Devam edilsin mi?')}`)
+    )
       return;
     try {
       const result = await searchDocument(

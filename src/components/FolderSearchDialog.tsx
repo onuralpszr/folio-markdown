@@ -44,7 +44,7 @@ export function FolderSearchDialog({
     const files = results.filter((f) => selected.has(f.id));
     if (
       !window.confirm(
-        `${files.length} dosyada değişiklik yapılacak. Özgün sürümler yerel geçmişte korunacak. Devam edilsin mi?`,
+        `${files.length} ${ui('dosyada değişiklik yapılacak. Özgün sürümler yerel geçmişte korunacak. Devam edilsin mi?')}`,
       )
     )
       return;
