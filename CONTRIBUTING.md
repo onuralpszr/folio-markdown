@@ -1,19 +1,22 @@
-# Geliştirme ve katkı rehberi
+# Contributing guide
 
-Folio, yerel Markdown dosyalarını koruyarak görsel düzenleme sunan bir masaüstü uygulamasıdır. Değişikliklerin kapsamı [açık kabul maddeleriyle](docs/TESLIMAT_KONTROLU.md) birlikte değerlendirilir.
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](CONTRIBUTING.md)
+[![Türkçe](https://img.shields.io/badge/lang-T%C3%BCrk%C3%A7e-red.svg)](CONTRIBUTING.tr.md)
 
-## Yerel kurulum
+Folio is a desktop app for visual editing that keeps local Markdown files intact. Changes are reviewed together with the [open acceptance items](docs/TESLIMAT_KONTROLU.md) (Turkish).
 
-Node.js 24 veya üzeri ve npm kullanın:
+## Local setup
+
+Use Node.js 24 or newer and npm:
 
 ```bash
 npm ci
 npm run desktop
 ```
 
-Arayüz önizlemesi için `npm run dev` kullanılabilir. Yerel dosya yetkileri ve işletim sistemi entegrasyonları Electron uygulamasında doğrulanmalıdır.
+`npm run dev` starts the interface preview. Local file access and operating system integrations must be checked in the Electron app.
 
-## Değişiklikleri doğrulama
+## Checking your changes
 
 ```bash
 npm test
@@ -22,23 +25,23 @@ npx playwright install chromium
 npx playwright test
 ```
 
-Linux üzerinde Electron testleri için bir grafik oturumu veya `xvfb-run -a npx playwright test` gerekir. macOS paketi oluşturulduktan sonra `node scripts/smoke-packaged.mjs` gerçek uygulama paketini geçici, ayrılmış bir profilde kontrol eder.
+On Linux the Electron tests need a graphical session or `xvfb-run -a npx playwright test`. After building the macOS package, `node scripts/smoke-packaged.mjs` checks the real app package in a temporary, separate profile.
 
-Depo kökündeki `.mcp.json`, MCP destekleyen kod asistanlarına Playwright MCP sunucusunu tanıtır. `npm run dev` açıkken asistan `http://127.0.0.1:5173` adresindeki arayüzü yalıtılmış bir Chromium profiliyle açıp inceleyebilir.
+The `.mcp.json` file in the repository root registers the Playwright MCP server for coding assistants that support MCP. While `npm run dev` is running, the assistant can open and inspect the interface at `http://127.0.0.1:5173` with an isolated Chromium profile.
 
-## Beklenen davranış
+## Expected behavior
 
-- Belgenin değişmeyen kaynak dilimlerini koruyun. Kaynak/görsel geçişlerini ve ortak geri almayı değerlendirin.
-- Kaydetme hatası veya dış değişiklik durumunda kullanıcının içeriğini koruyun; sessizce üzerine yazmayın.
-- Belge içeriğine Node, komut çalıştırma veya sınırsız ağ erişimi vermeyin.
-- Görsel editör pencerelerinde İptal belgeyi değiştirmemelidir; Uygula tek bir düzenleme işlemi üretmelidir.
-- Yeni arayüz metinleri için Türkçe ve İngilizce karşılıkları ekleyin.
-- Test raporlarında çalıştırılan ortamı belirtin. Paket üretmek, o platformda çalıştırma testinin yerine geçmez.
+- Keep unchanged source slices of the document intact. Consider source and visual view switching and shared undo.
+- Protect the user's content when saving fails or the file changes elsewhere, and never overwrite it silently.
+- Never give document content access to Node, command execution or unrestricted network access.
+- Cancel in visual editor dialogs must not change the document, and Apply must produce a single edit.
+- Add both Turkish and English text for new interface strings.
+- State the environment you ran tests in. Building a package does not replace running it on that platform.
 
-## Pull request içeriği
+## Pull requests
 
-Çözülen sorunu, kullanıcının göreceği davranışı ve ilgili doğrulama sonuçlarını açıklayın. İsterlerde değişiklik gerekiyorsa bunu açıkça belirtin. Kişisel belgeleri, erişim anahtarlarını, kurtarma taslaklarını ve büyük derleme çıktılarını depoya eklemeyin.
+Describe the problem you solved, the behavior users will see and the related checks you ran. Say clearly if the requirements need to change. Do not add personal documents, access keys, recovery drafts or large build outputs to the repository.
 
-## Paketleme
+## Packaging
 
-Platform komutları ve imzalama gereksinimleri [yayınlama rehberinde](docs/YAYINLAMA.md) açıklanır. Üçüncü taraf lisans bildirimi ve bağımlılık envanteri paketleme sırasında üretilir. İmzalama anahtarları kaynak depoda tutulmaz.
+Platform commands and signing requirements are described in the [release guide](docs/YAYINLAMA.md) (Turkish). Third-party license notices and the dependency inventory are generated during packaging. Signing keys are never kept in the repository.
