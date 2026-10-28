@@ -12,7 +12,7 @@
 ![Electron](https://img.shields.io/badge/Electron-45-47848F.svg?logo=electron&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6.svg?logo=typescript&logoColor=white)
 
-[Özellikler](#özellikler) · [Başlarken](#başlarken) · [Geliştirme](#geliştirme) · [Testler](#testler) · [Paketleme](#paketleme) · [Katkı rehberi](CONTRIBUTING.md)
+[Özellikler](#özellikler) · [Başlarken](#başlarken) · [Geliştirme](#geliştirme) · [Testler](#testler) · [Paketleme](#paketleme) · [Katkı rehberi](CONTRIBUTING.tr.md)
 
 ![Folio masaüstü uygulaması](docs/screenshots/folio-packaged.png)
 
@@ -31,6 +31,7 @@ Yerel dosyalarla çalışan masaüstü Markdown okuyucu ve görsel düzenleyici.
 - [Geliştirme](#geliştirme)
 - [Testler](#testler)
 - [Paketleme](#paketleme)
+- [MCP sunucusu](#mcp-sunucusu)
 - [Veri güvenliği ve gizlilik](#veri-güvenliği-ve-gizlilik)
 - [Taşınabilir veri klasörü](#taşınabilir-veri-klasörü)
 - [Bilinen kullanım sınırları](#bilinen-kullanım-sınırları)
@@ -131,6 +132,40 @@ Diğer mimari için doğrudan `npx electron-builder --mac --x64 --publish never`
 
 İmzalama, noter onayı ve yayın adresi yönetimi için [yayınlama rehberini](docs/YAYINLAMA.md) okuyun.
 
+## MCP sunucusu
+
+Folio, yapay zekâ asistanlarının tek bir klasördeki Markdown dosyalarıyla uygulamanın güvenli kayıt kurallarını kullanarak çalışabilmesi için yerel bir [MCP](https://modelcontextprotocol.io) sunucusu içerir. Sunucu kaynak kodundan çalıştırılır ve uygulama paketlerine eklenmez.
+
+```bash
+npm ci
+npm run build:main
+node dist-electron/mcp.js /notlar/klasoru
+```
+
+Örnek istemci yapılandırması:
+
+```json
+{
+  "mcpServers": {
+    "folio": {
+      "command": "node",
+      "args": ["/yol/folio-markdown/dist-electron/mcp.js", "/notlar/klasoru"]
+    }
+  }
+}
+```
+
+| Araç               | Ne yapar                                                                                   |
+| ------------------ | ------------------------------------------------------------------------------------------ |
+| `list_documents`   | Klasördeki Markdown dosyalarını boyutlarıyla listeler                                      |
+| `read_document`    | Bir dosyanın kaynağını, kodlamasını ve özetini döndürür                                    |
+| `search_documents` | Satır numaralarıyla düz metin araması yapar                                                |
+| `write_document`   | Yeni dosya oluşturur veya `baseHash` diskteki dosyayla eşleşirse mevcut dosyayı değiştirir |
+
+- Yalnız klasör içindeki `.md` ve `.markdown` dosyaları kullanılabilir. Dışarıyı gösteren yollar ve sembolik bağlantılar reddedilir.
+- Gizli klasörler, `node_modules`, `dist` ve `release` atlanır; 5 MiB üzerindeki dosyalar okunmaz.
+- Yazma işlemi atomiktir, dosyanın kodlamasını ve CRLF satır sonlarını korur ve okunduktan sonra değişmiş bir dosyanın üzerine yazmaz.
+
 ## Veri güvenliği ve gizlilik
 
 - Dosyanın özgün kaynağı saklanır. Değişmeyen üst düzey bloklar yeniden yazılmaz; değişen bloklar kontrollü olarak üretilir. Markdown → HTML → Markdown dönüşümüyle bütün belgeyi yeniden kaydetme yapılmaz. Tanınmayan içerikler kaynakları korunarak açılır.
@@ -175,7 +210,7 @@ docs/              Teslimat durumu, yayın rehberi ve ekran görüntüleri
 
 ## Belgeler
 
-- [Katkı rehberi](CONTRIBUTING.md)
+- [Katkı rehberi](CONTRIBUTING.tr.md)
 - [Teslimat kontrolü](docs/TESLIMAT_KONTROLU.md)
 - [Test raporu](docs/TEST_RAPORU.md)
 - [Matematik desteği](docs/MATEMATIK_DESTEGI.md)
