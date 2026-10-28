@@ -37,4 +37,18 @@ describe('asset relocation', () => {
       await fs.rm(dir, { recursive: true });
     }
   });
+  it('keeps links with a literal percent sign instead of failing', async () => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'folio-assets-'));
+    try {
+      await fs.mkdir(path.join(dir, 'nested'));
+      const next = await relocateAssets(
+        '[Rapor](100%.md)\n',
+        path.join(dir, 'old.md'),
+        path.join(dir, 'nested', 'new.md'),
+      );
+      expect(next).toBe('[Rapor](../100%.md)\n');
+    } finally {
+      await fs.rm(dir, { recursive: true });
+    }
+  });
 });
