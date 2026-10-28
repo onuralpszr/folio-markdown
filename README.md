@@ -2,7 +2,7 @@
 
 **Markdown belgelerini kod bilmeden oku, düzenle ve yanında taşı.**
 
-[Özellikler](#çalışan-özellikler) · [Geliştirme](#geliştirme) · [Teknik isterler](PROJE_TEKNIK_ISTER_DOKUMANI.md) · [Test raporu](docs/TEST_RAPORU.md) · [Katkı rehberi](CONTRIBUTING.md)
+[Özellikler](#çalışan-özellikler) · [Geliştirme](#geliştirme) · [Test raporu](docs/TEST_RAPORU.md) · [Katkı rehberi](CONTRIBUTING.md)
 
 ![Folio masaüstü uygulaması](docs/screenshots/folio-packaged.png)
 
