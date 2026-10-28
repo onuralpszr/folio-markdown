@@ -112,11 +112,20 @@ test('unsafe HTML never runs and remote images do not load', async ({ page }) =>
 test('captures light and dark desktop layouts', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.document-scroll .mermaid-drawing:visible svg')).toBeVisible();
-  await page.screenshot({ path: 'docs/screenshots/folio-light.png', fullPage: true });
+  await page.screenshot({
+    path: 'docs/screenshots/folio-light.png',
+    fullPage: true,
+    animations: 'disabled',
+  });
   await page.getByRole('button', { name: 'Ayarlar', exact: true }).click();
   await page.getByRole('button', { name: 'Koyu', exact: true }).click();
   await page.getByRole('button', { name: 'Tamam', exact: true }).click();
-  await page.screenshot({ path: 'docs/screenshots/folio-dark.png', fullPage: true });
+  await expect(page.getByRole('heading', { name: 'Kendine göre bir alan' })).toBeHidden();
+  await page.screenshot({
+    path: 'docs/screenshots/folio-dark.png',
+    fullPage: true,
+    animations: 'disabled',
+  });
 });
 
 test('switches interface language without translating document content', async ({ page }) => {
