@@ -675,7 +675,7 @@ export default function App() {
       return;
     }
     if (action === 'trash') {
-      if (!window.confirm(`${name} çöp kutusuna taşınsın mı?`)) return;
+      if (!window.confirm(`${name} ${ui('çöp kutusuna taşınsın mı?')}`)) return;
       try {
         await api.fileAction(action, id);
         setTreeRevision((n) => n + 1);
@@ -2340,7 +2340,7 @@ export default function App() {
                     className="icon-button"
                     aria-label={ui('Taslağı sil')}
                     onClick={async () => {
-                      if (window.confirm('Bu kurtarma taslağı silinsin mi?')) {
+                      if (window.confirm(ui('Bu kurtarma taslağı silinsin mi?'))) {
                         await api.removeDraft(d.id);
                         setDrafts(await api.drafts());
                       }
@@ -2577,7 +2577,9 @@ export default function App() {
                 onClick={() => {
                   if (
                     window.confirm(
-                      'Yerel değişiklikler yerine disk sürümü yüklensin mi? Yerel içerik kurtarma taslağında kalır.',
+                      ui(
+                        'Yerel değişiklikler yerine disk sürümü yüklensin mi? Yerel içerik kurtarma taslağında kalır.',
+                      ),
                     )
                   ) {
                     setTabs((all) =>

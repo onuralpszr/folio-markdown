@@ -461,7 +461,7 @@ export function DiagramDialog({
   const removeNode = (id: string) => {
     if (
       model.edges.some((e) => e.from === id || e.to === id) &&
-      !window.confirm('Bu öğe ve ona bağlı bağlantılar silinecek. Devam edilsin mi?')
+      !window.confirm(ui('Bu öğe ve ona bağlı bağlantılar silinecek. Devam edilsin mi?'))
     )
       return;
     update({
@@ -562,7 +562,9 @@ export function DiagramDialog({
                 if (
                   (model.nodes.length || model.rows.length) &&
                   !window.confirm(
-                    'Tür değiştirmek mevcut çalışma taslağını yeni bir örnekle değiştirecek. Devam edilsin mi?',
+                    ui(
+                      'Tür değiştirmek mevcut çalışma taslağını yeni bir örnekle değiştirecek. Devam edilsin mi?',
+                    ),
                   )
                 )
                   return;
@@ -588,7 +590,9 @@ export function DiagramDialog({
                   !parseDiagram(raw).safe &&
                   sourceMode &&
                   !window.confirm(
-                    'Bu harici kaynak görsel modele tam çevrilemiyor. Dönüşüm tanınmayan ayrıntıları kaldırabilir. Kaynağın kopyasını sakladığınızdan emin olun.',
+                    ui(
+                      'Bu harici kaynak görsel modele tam çevrilemiyor. Dönüşüm tanınmayan ayrıntıları kaldırabilir. Kaynağın kopyasını sakladığınızdan emin olun.',
+                    ),
                   )
                 )
                   return;

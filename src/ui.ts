@@ -421,6 +421,19 @@ Object.assign(english, {
   'Ayarlar uygulandı.': 'Settings applied.',
   'Otomatik kaydet açık: uyguladıktan sonra konumu olan belgeler diske kaydedilebilir.':
     'Autosave is enabled: after applying, documents with a file location may be saved to disk.',
+  'eşleşme değiştirilecek. Devam edilsin mi?': 'matches will be replaced. Continue?',
+  'dosyada değişiklik yapılacak. Özgün sürümler yerel geçmişte korunacak. Devam edilsin mi?':
+    'files will be changed. Original versions are kept in local history. Continue?',
+  'Bu öğe ve ona bağlı bağlantılar silinecek. Devam edilsin mi?':
+    'This item and its connections will be deleted. Continue?',
+  'Tür değiştirmek mevcut çalışma taslağını yeni bir örnekle değiştirecek. Devam edilsin mi?':
+    'Changing the type will replace the current draft with a new example. Continue?',
+  'Bu harici kaynak görsel modele tam çevrilemiyor. Dönüşüm tanınmayan ayrıntıları kaldırabilir. Kaynağın kopyasını sakladığınızdan emin olun.':
+    'This external source cannot be fully converted to the visual model. Converting may remove unrecognized details. Make sure you keep a copy of the source.',
+  'çöp kutusuna taşınsın mı?': 'will be moved to the trash. Continue?',
+  'Bu kurtarma taslağı silinsin mi?': 'Delete this recovery draft?',
+  'Yerel değişiklikler yerine disk sürümü yüklensin mi? Yerel içerik kurtarma taslağında kalır.':
+    'Load the disk version instead of your local changes? Your local content stays in a recovery draft.',
 });
 export const translate = (text: string) => (language === 'en' ? english[text] || text : text);
 export function useT() {
