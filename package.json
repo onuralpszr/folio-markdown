@@ -63,6 +63,10 @@
         {
           "from": "README.md",
           "to": "README.md"
+        },
+        {
+          "from": "README.tr.md",
+          "to": "README.tr.md"
         }
       ]
     },
