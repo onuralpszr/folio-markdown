@@ -1,28 +1,83 @@
+<div align="center">
+
 # Folio
 
-**Markdown belgelerini kod bilmeden oku, düzenle ve yanında taşı.**
+**Read, edit and carry your Markdown documents without writing code.**
 
-[Özellikler](#çalışan-özellikler) · [Geliştirme](#geliştirme) · [Test raporu](docs/TEST_RAPORU.md) · [Katkı rehberi](CONTRIBUTING.md)
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
+[![Türkçe](https://img.shields.io/badge/lang-T%C3%BCrk%C3%A7e-red.svg)](README.tr.md)
 
-![Folio masaüstü uygulaması](docs/screenshots/folio-packaged.png)
+[![Desktop validation](https://github.com/onurcankaraman/folio-markdown/actions/workflows/desktop.yml/badge.svg)](https://github.com/onurcankaraman/folio-markdown/actions/workflows/desktop.yml)
+![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg)
+![Electron](https://img.shields.io/badge/Electron-45-47848F.svg?logo=electron&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6.svg?logo=typescript&logoColor=white)
 
-Yerel dosyalarla çalışan masaüstü Markdown okuyucu ve görsel düzenleyici. Electron, React ve TypeScript ile geliştirildi. Bir hesap veya uygulama sunucusu gerektirmez.
+[Features](#features) · [Getting started](#getting-started) · [Development](#development) · [Testing](#testing) · [Packaging](#packaging) · [Contributing](CONTRIBUTING.md)
 
-**Proje durumu:** Çalışan masaüstü uygulaması ve üç platform için yerel paketler mevcuttur. Teknik isterlerin tam üretim kabulü henüz tamamlanmamıştır. Doğrulanan işlevler ve açık maddeler [teslimat kontrolünde](docs/TESLIMAT_KONTROLU.md) izlenir.
+![Folio desktop app](docs/screenshots/folio-packaged.png)
 
-## Uygulamayı açma
+</div>
 
-Aşağıdaki paketler yerel çalışma alanında üretilmiştir; büyük kurulum dosyaları Git geçmişine eklenmez. GitHub Actions çalışmaları başarılı olduğunda platform paketleri ilgili çalışmanın **Artifacts** bölümünden alınabilir. İmzalı bir genel yayın henüz yoktur.
+Folio is a local-first desktop Markdown reader and visual editor built with Electron, React and TypeScript. It works directly with files on your computer and needs no account or application server.
 
-Apple Silicon Mac üzerinde `release/mac-arm64/Folio.app` doğrudan çalıştırılabilir. `release/Folio-1.0.0-mac-arm64.dmg` kurulum için, aynı adlı ZIP ise uygulama paketini taşımak için üretilir.
+> [!NOTE]
+> **Project status:** the desktop app works and local packages are produced for all three platforms. Full production acceptance is still open. Verified features and open items are tracked in the [delivery checklist](docs/TESLIMAT_KONTROLU.md) (Turkish).
 
-Yerel paket yayıncı sertifikasıyla imzalanmamıştır ve Apple noter onayı yoktur. İmzalı genel dağıtım için yayıncıya ait sertifikalar gerekir. Sistem güvenlik ayarlarını küresel olarak kapatmayın.
+## Table of contents
 
-Windows x64 için Setup/Portable `.exe`, Linux x64 için AppImage/DEB dosyaları `release/` içinde üretildi. Windows ve Linux paketleri ilgili işletim sistemlerinde henüz çalıştırılmadı. macOS ARM64 uygulama paketi bu bilgisayarda çalıştırılarak doğrulandı.
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Getting started](#getting-started)
+- [Development](#development)
+- [Testing](#testing)
+- [Packaging](#packaging)
+- [Data safety and privacy](#data-safety-and-privacy)
+- [Portable data folder](#portable-data-folder)
+- [Known limits](#known-limits)
+- [Project structure](#project-structure)
+- [Documentation](#documentation)
+- [Dependencies and license](#dependencies-and-license)
 
-## Geliştirme
+## Features
 
-Node.js 24 veya üzeri ve npm gerekir. Depoyu klonlayıp kilit dosyasındaki sürümlerle kurun:
+- **Four views:** read, edit visually, edit the real Markdown source, or split view.
+- **Text formatting:** headings, bold, italic, strikethrough, lists, task lists, quotes and code blocks.
+- **Tables:** add, delete, move and align rows and columns, paste TSV, and import or export CSV/TSV with a preview.
+- **Images and links:** images from files or the clipboard, a relative assets folder and local links.
+- **Math:** visual input with MathLive, sized matrices and determinants, a symbol and template palette, KaTeX rendering, LaTeX/MathML copy and offline SVG/PNG export with scale and transparency options.
+- **Diagrams:** canvas or form based editing for 16 Mermaid diagram types with live preview, source view and SVG export.
+- **Rich blocks:** footnotes, callouts, collapsible sections with a visual body editor and a YAML properties panel.
+- **Tabs and sessions:** pinning, reordering, reopening closed tabs and restoring the last saved session.
+- **Workspace:** folder tree, new file and folder, rename, move to trash and folder-wide search and replace.
+- **Safe saving:** conflict detection against the real file, atomic save, three-way merge, recovery drafts and version history.
+- **Encodings:** UTF-8 with or without BOM and UTF-16, an encoding picker for invalid UTF-8, and existing line endings are preserved.
+- **Export:** PDF, standalone HTML with embedded fonts and ZIP with images. ZIP import checks paths, sizes, name collisions and CRC.
+- **Interface:** Turkish and English UI, light, dark and system themes, zoom, focus mode and validated settings import with a preview.
+
+This list covers the main features and does not claim every advanced option of each feature. See the delivery checklist for details, especially for advanced diagram options.
+
+## Screenshots
+
+| Light                                                  | Dark                                                 |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| ![Folio light theme](docs/screenshots/folio-light.png) | ![Folio dark theme](docs/screenshots/folio-dark.png) |
+
+## Getting started
+
+There is no signed public release yet. When a GitHub Actions run succeeds, platform packages can be downloaded from the **Artifacts** section of that run.
+
+| Platform              | Output in `release/`                                                        |
+| --------------------- | --------------------------------------------------------------------------- |
+| macOS (Apple Silicon) | `mac-arm64/Folio.app`, `Folio-<version>-mac-arm64.dmg` and a ZIP of the app |
+| Windows x64           | Setup and Portable `.exe`                                                   |
+| Linux x64             | AppImage and DEB                                                            |
+
+> [!WARNING]
+> Local packages are not signed with a publisher certificate and the macOS app is not notarized. Signed public distribution needs the publisher's own certificates. Do not turn off system security settings globally to open the app.
+
+## Development
+
+Node.js 24 or newer and npm are required. Clone the repository and install the locked versions:
 
 ```bash
 git clone https://github.com/onurcankaraman/folio-markdown.git
@@ -31,60 +86,22 @@ npm ci
 npm run desktop
 ```
 
-Yalnız arayüz önizlemesi:
+Interface preview only:
 
 ```bash
 npm run dev
 ```
 
-Tarayıcı önizlemesi bir masaüstü uygulamasının dosya yetkilerine sahip değildir. Kaydetme dosya indirme olarak çalışır; yerel klasör, sürüm geçmişi ve dosya izleme için Electron uygulaması kullanılmalıdır. Önizlemede bu fark durum çubuğunda gösterilir.
+The browser preview does not have the desktop app's file access. Saving works as a file download, so use the Electron app for local folders, version history and file watching. The status bar shows this difference in the preview.
 
-Üretim derlemesini yerel olarak çalıştırma:
+Run the production build locally:
 
 ```bash
 npm run build
 npm start
 ```
 
-## Çalışan özellikler
-
-- Okuma, doğrudan görsel düzenleme, gerçek Markdown kaynağı ve bölünmüş görünüm.
-- Başlıklar, kalın/italik/üstü çizili, listeler, görev kutuları, alıntılar ve kod blokları.
-- Tablo ekleme; satır/sütun ekleme, silme, taşıma ve hizalama; TSV yapıştırma; CSV/TSV önizlemeli içe ve dışa aktarma.
-- Dosyadan veya panodan görsel, göreli varlık klasörü ve yerel bağlantılar.
-- MathLive ile görsel matematik girişi, boyut seçmeli matris/determinant, sembol/şablon paleti ve KaTeX ile çizim; LaTeX/MathML kopyalama, çevrimdışı SVG/PNG çıktısı, PNG ölçek ve saydamlık seçenekleri.
-- 16 Mermaid türü için tuval veya form/veri tabanlı düzenleme; canlı önizleme, kaynak ve SVG çıktısı.
-- Dipnotlar, bilgi kutuları, görsel gövde düzenlemeli açılır bölümler ve YAML özellik paneli.
-- Sekmeler, sabitleme, sıralama, kapatılan sekmeyi açma ve kaydedilmiş oturumu geri yükleme.
-- Klasör ağacı, yeni dosya/klasör, yeniden adlandırma, çöp kutusu ve klasörde toplu arama/değiştirme.
-- Gerçek dosyada çakışma denetimi, atomik kaydetme, üç yönlü birleştirme, kurtarma taslakları ve kayıt geçmişi.
-- UTF-8/BOM ve UTF-16; geçersiz UTF-8 için kodlama seçimi; mevcut satır sonlarını koruma.
-- PDF, fontları gömülü bağımsız HTML ve görselleri içeren ZIP. ZIP içe aktarmada yol, boyut, çakışma ve CRC kontrolleri.
-- Türkçe/İngilizce ana arayüz, açık/koyu/sistem teması, yakınlaştırma ve odak modu; doğrulama ve uygulama önizlemeli ayar dosyası içe aktarma.
-
-Bu liste temel işlevleri anlatır; her özelliğin teknik isterdeki bütün gelişmiş seçeneklerini kapsadığı iddiası değildir. Özellikle diyagramların ileri seçenekleri için teslimat kontrolünü okuyun.
-
-## Veri güvenliği ve gizlilik
-
-Dosyanın özgün kaynağı saklanır. Değişmeyen üst düzey bloklar yeniden yazılmaz; değişen bloklar kontrollü olarak üretilir. Markdown → HTML → Markdown dönüşümüyle bütün belgeyi yeniden kaydetme yapılmaz. Tanınmayan içerikler kaynakları korunarak açılır.
-
-Kayıt, aynı dizindeki geçici dosyaya yazma, dayanıklı aktarım, son disk özeti denetimi ve atomik değiştirme kullanır. Kaydetme başarısız olduğunda belge açık kalır. İşletim sistemi düzeyinde koşullu değiştirme desteği olmayan dosya sistemlerinde son kontrol ile yeniden adlandırma arasında çok dar bir yarış aralığı kalabilir; ağ dosya sistemleri için yerel disk düzeyinde garanti verilmez.
-
-Otomatik kurtarma taslağı ile gerçek dosyaya otomatik kaydetme ayrı işlemlerdir. Gerçek otomatik kaydet varsayılan kapalıdır. Taslaklar 2 saniyelik boşta kalma süresinden sonra, sürekli yazımda 10 saniyede bir korunur. Taslaklar açık metindir; uygulama düzeyinde şifreleme iddia edilmez.
-
-Renderer'da Node erişimi kapalıdır; sandbox ve context isolation açıktır. Diyagramlar masaüstünde ayrı, ayrıcalıksız bir pencerede çizilir; süre aşımında bu pencere kapatılır. Belge içinden kod çalıştırılmaz. Uzak görseller varsayılan yüklenmez. Güncelleme kontrolü kullanıcı eylemi olmadan ağ isteği başlatmaz.
-
-## Taşınabilir veri klasörü
-
-- Windows portable paketi, kendi bulunduğu klasörün altındaki `data/` klasörünü kullanır.
-- macOS'ta `.app` dosyasının yanına, Linux'ta çalıştırılabilir dosyanın yanına `portable.json` eklemek taşınabilir veri modunu etkinleştirir. Dosyanın içeriği `{}` olabilir.
-- ZIP'ten çıkarılmış `.app` kendi başına ayarların da taşınabilir olduğu anlamına gelmez; işaretçi gerekir.
-- `FOLIO_DATA_DIR` ortam değişkeni, portable işaretçisi yokken özel bir veri klasörü seçmeye yarar. Paket testleri bu şekilde kullanıcı profilinden ayrılır.
-- Yazılamayan veri konumunda klasör seçme veya geçici oturum seçenekleri gösterilir; sessizce başka bir profile geçilmez.
-
-İşletim sisteminin geçici dosyaları ve kayıtları nedeniyle “hiç iz bırakmaz” iddiası yoktur.
-
-## Testler
+## Testing
 
 ```bash
 npm test
@@ -92,17 +109,15 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Uçtan uca test komutu önce üretim derlemesini oluşturur. Testler geçici dosyalar ve ayrılmış bir Electron profili kullanır. macOS üzerinde oluşturulan gerçek uygulama paketi ayrıca kontrol edilebilir:
+The end-to-end command builds the production bundle first. Tests use temporary files and a separate Electron profile. The packaged macOS app can be checked as well:
 
 ```bash
 node scripts/smoke-packaged.mjs
 ```
 
-Son doğrulamada 55 çekirdek/dosya testi ve 17 uçtan uca senaryo geçti. Ayrıntılar [test raporunda](docs/TEST_RAPORU.md), formül kapsamı [matematik envanterinde](docs/MATEMATIK_DESTEGI.md) bulunur.
+Details are in the [test report](docs/TEST_RAPORU.md) and math coverage is in the [math inventory](docs/MATEMATIK_DESTEGI.md) (both Turkish).
 
-Test sayısı, teknik isterdeki kabul kriteri sayısıyla aynı şey değildir. Test kapsamının sınırları teslimat kontrolünde belirtilir.
-
-## Paketleme
+## Packaging
 
 ```bash
 node scripts/icons.mjs
@@ -112,34 +127,62 @@ npm run package:linux
 node scripts/release-metadata.mjs
 ```
 
-Diğer mimari için doğrudan `npx electron-builder --mac --x64 --publish never` gibi bir hedef kullanılır. Platform paketleri esas olarak kendi işletim sistemlerinde oluşturulmalıdır. GitHub Actions dosyası platform/mimari işleri içerir. `main` güncellemeleri, sürüm etiketleri ve elle başlatılan çalışmalar doğrulama ve paketleme akışını tetikler.
+For another architecture use a target such as `npx electron-builder --mac --x64 --publish never`. Packages should be built on their own operating system. The GitHub Actions workflow has jobs for each platform and architecture and runs on `main` pushes, version tags and manual runs.
 
-İmzalama, noter onayı ve yayın adresi yönetimi için [yayınlama rehberini](docs/YAYINLAMA.md) okuyun.
+See the [release guide](docs/YAYINLAMA.md) (Turkish) for signing, notarization and update address setup.
 
-## Kaynak düzeni
+## Data safety and privacy
+
+- The original source of the file is kept. Unchanged top-level blocks are never rewritten and changed blocks are generated in a controlled way. The whole document is never saved through a Markdown to HTML to Markdown round trip. Unrecognized content opens with its source preserved.
+- Saving writes to a temporary file in the same folder, syncs it, checks the latest disk hash and then replaces the file atomically. If saving fails the document stays open. On file systems without OS-level conditional replace, a very small race window remains between the last check and the rename. Network file systems do not get local disk guarantees.
+- Recovery drafts and real autosave are separate. Real autosave is off by default. Drafts are stored after 2 seconds of idle time, or every 10 seconds while typing. Drafts are plain text and are not encrypted by the app.
+- Node access is disabled in the renderer, with sandbox and context isolation on. On desktop, diagrams are rendered in a separate unprivileged window that is closed on timeout. Documents never run code. Remote images are not loaded by default. Update checks never start a network request without a user action.
+
+## Portable data folder
+
+- The Windows portable package uses the `data/` folder next to itself.
+- On macOS put `portable.json` next to the `.app`, and on Linux next to the executable, to turn on portable data mode. The file content can be `{}`.
+- An `.app` extracted from a ZIP does not make settings portable by itself, the marker file is required.
+- The `FOLIO_DATA_DIR` environment variable picks a custom data folder when there is no portable marker. Package tests use it to stay out of the user profile.
+- If the data location is not writable, Folio offers to pick a folder or use a temporary session instead of silently switching to another profile.
+
+Operating system temporary files and logs mean Folio does not claim to leave no trace at all.
+
+## Known limits
+
+| Area                 | Limit                                                                                                             |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Local Markdown file  | 60 MiB to open. Performance targets for large documents are not fully verified yet.                               |
+| Image                | 25 MiB per file                                                                                                   |
+| Visual diagram model | 500 nodes, 1,000 edges or 2,000 data rows, and 256 KiB of source                                                  |
+| Formula              | 32 KiB. Untrusted HTML and link commands are disabled.                                                            |
+| ZIP import           | 100 MiB compressed, 500 MiB uncompressed and 10,000 files. Multi-part, ZIP64 and encrypted archives are rejected. |
+| ZIP export           | 40 MiB total source and assets. Folio never silently produces an incomplete package.                              |
+| Folder search        | 2,000 files and 50 MiB total, 5 MiB per file                                                                      |
+
+## Project structure
 
 ```text
-electron/                 Dosya, kayıt, güvenlik, paket, güncelleme ve platform köprüsü
-src/core/                 Markdown kaynak koruma, diyagram modelleri, arama ve geçmiş
-src/components/           Görsel editörler ve belge araçları
-src/App.tsx               Uygulama yerleşimi ve belge oturumlarının koordinasyonu
-tests/                    Çekirdek, dosya, paket ve gerçek kullanıcı akışları
-build/                    Uygulama simgesi ve platform simgeleri
-scripts/                  Simge, paket kontrolü ve yayın meta verisi üretimi
-docs/                     Teslimat durumu, yayın rehberi ve ekran görüntüleri
+electron/          File access, saving, security, packaging, updates and platform bridge
+src/core/          Markdown source preservation, diagram models, search and history
+src/components/    Visual editors and document tools
+src/App.tsx        App layout and document session coordination
+tests/             Core, file, package and real user flow tests
+build/             App and platform icons
+scripts/           Icon, package check and release metadata generation
+docs/              Delivery status, release guide and screenshots
 ```
 
-## Bilinen kullanım sınırları
+## Documentation
 
-- Yerel Markdown dosyası: 60 MiB açılış sınırı; büyük belgeler için tüm performans hedefleri henüz doğrulanmadı.
-- Görsel: dosya başına 25 MiB.
-- Görsel diyagram modeli: 500 düğüm, 1.000 bağlantı veya 2.000 veri satırı; 256 KiB kaynak.
-- Formül: 32 KiB; güvenilmeyen HTML/bağlantı komutları kapalı.
-- ZIP içe aktarma: 100 MiB sıkıştırılmış, 500 MiB açılmış içerik, 10.000 dosya. Çok parçalı/ZIP64 ve şifreli arşivler reddedilir.
-- ZIP çıktı: 40 MiB toplam kaynak/varlık sınırı. Aşımda sessizce eksik paket üretilmez.
-- Klasör araması: 2.000 dosya ve 50 MiB toplam tarama; dosya başına 5 MiB.
+| Document                                        | Language |
+| ----------------------------------------------- | -------- |
+| [Contributing guide](CONTRIBUTING.md)           | Turkish  |
+| [Delivery checklist](docs/TESLIMAT_KONTROLU.md) | Turkish  |
+| [Test report](docs/TEST_RAPORU.md)              | Turkish  |
+| [Math support](docs/MATEMATIK_DESTEGI.md)       | Turkish  |
+| [Release guide](docs/YAYINLAMA.md)              | Turkish  |
 
+## Dependencies and license
 
-## Bağımlılıklar ve lisanslar
-
-Üçüncü taraf bileşen bildirimleri `node scripts/release-metadata.mjs` ile üretilir; lisans metinleri uygulama paketlerine eklenir. Üretilen dosyalar Git geçmişine alınmaz. Projenin kendi kaynak kodu için henüz bir açık kaynak lisansı seçilmemiştir.
+Third-party notices are generated with `node scripts/release-metadata.mjs` and license texts are bundled with app packages. Generated files are not committed. An open source license for the project's own source code has not been chosen yet.
