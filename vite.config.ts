@@ -4,6 +4,12 @@ import { fileURLToPath } from 'node:url';
 export default defineConfig({
   plugins: [react()],
   base: './',
+  optimizeDeps: {
+    entries: ['index.html', 'diagram.html', 'src/core/math-svg.worker.ts'],
+  },
+  server: {
+    watch: { ignored: ['**/docs/screenshots/**', '**/test-results/**', '**/release/**'] },
+  },
   build: {
     chunkSizeWarningLimit: 1500,
     rolldownOptions: {

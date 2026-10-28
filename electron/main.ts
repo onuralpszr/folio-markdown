@@ -966,7 +966,6 @@ function handlers() {
     print.webContents.on('will-navigate', (e) => e.preventDefault());
     try {
       await print.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(html)}`);
-      await print.webContents.capturePage();
       const bytes = await print.webContents.printToPDF({
         printBackground: true,
         pageSize: 'A4',

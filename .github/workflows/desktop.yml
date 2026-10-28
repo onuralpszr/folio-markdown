@@ -43,6 +43,13 @@ jobs:
         if: runner.os == 'Linux'
         run: npx electron-builder --linux --${{ matrix.arch }} --publish never --config.extraMetadata.homepage=file:///opt/Folio/resources/README.md
       - run: node scripts/release-metadata.mjs
+      - name: Keep failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostics-${{ matrix.platform }}-${{ matrix.arch }}
+          path: test-results/
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         with:
           name: Folio-${{ matrix.platform }}-${{ matrix.arch }}
