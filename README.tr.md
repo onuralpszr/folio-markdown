@@ -12,7 +12,7 @@
 ![Electron](https://img.shields.io/badge/Electron-45-47848F.svg?logo=electron&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6.svg?logo=typescript&logoColor=white)
 
-[Özellikler](#özellikler) · [Başlarken](#başlarken) · [Geliştirme](#geliştirme) · [Testler](#testler) · [Paketleme](#paketleme) · [Katkı rehberi](CONTRIBUTING.md)
+[Özellikler](#özellikler) · [Başlarken](#başlarken) · [Geliştirme](#geliştirme) · [Testler](#testler) · [Paketleme](#paketleme) · [Katkı rehberi](CONTRIBUTING.tr.md)
 
 ![Folio masaüstü uygulaması](docs/screenshots/folio-packaged.png)
 
@@ -175,7 +175,7 @@ docs/              Teslimat durumu, yayın rehberi ve ekran görüntüleri
 
 ## Belgeler
 
-- [Katkı rehberi](CONTRIBUTING.md)
+- [Katkı rehberi](CONTRIBUTING.tr.md)
 - [Teslimat kontrolü](docs/TESLIMAT_KONTROLU.md)
 - [Test raporu](docs/TEST_RAPORU.md)
 - [Matematik desteği](docs/MATEMATIK_DESTEGI.md)
