@@ -24,6 +24,8 @@ npx playwright test
 
 Linux üzerinde Electron testleri için bir grafik oturumu veya `xvfb-run -a npx playwright test` gerekir. macOS paketi oluşturulduktan sonra `node scripts/smoke-packaged.mjs` gerçek uygulama paketini geçici, ayrılmış bir profilde kontrol eder.
 
+Depo kökündeki `.mcp.json`, MCP destekleyen kod asistanlarına Playwright MCP sunucusunu tanıtır. `npm run dev` açıkken asistan `http://127.0.0.1:5173` adresindeki arayüzü yalıtılmış bir Chromium profiliyle açıp inceleyebilir.
+
 ## Beklenen davranış
 
 - Belgenin değişmeyen kaynak dilimlerini koruyun. Kaynak/görsel geçişlerini ve ortak geri almayı değerlendirin.
