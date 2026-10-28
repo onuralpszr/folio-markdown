@@ -54,3 +54,4 @@ self.onmessage = (
     self.postMessage({ matches: [], error: e.message });
   }
 };
+self.postMessage({ ready: true });

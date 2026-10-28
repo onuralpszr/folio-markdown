@@ -11,12 +11,19 @@ export function searchDocument(
   if (!query) return Promise.resolve({ matches: [] });
   return new Promise((resolve, reject) => {
     const worker = new Worker(new URL('./search.worker.ts', import.meta.url), { type: 'module' });
-    const timer = setTimeout(() => {
-      worker.terminate();
-      reject(new Error('Arama süre sınırını aştı. Daha basit bir ifade kullanın.'));
-    }, 500);
+    const expire = (message: string, delay: number) =>
+      setTimeout(() => {
+        worker.terminate();
+        reject(new Error(message));
+      }, delay);
+    // A cold worker can take seconds to load, so the 500 ms limit starts once it is ready.
+    let timer = expire('Arama başlatılamadı.', 15000);
     worker.onmessage = (e) => {
       clearTimeout(timer);
+      if (e.data.ready) {
+        timer = expire('Arama süre sınırını aştı. Daha basit bir ifade kullanın.', 500);
+        return;
+      }
       worker.terminate();
       if (e.data.error) reject(new Error('Geçersiz arama ifadesi: ' + e.data.error));
       else resolve(e.data);
