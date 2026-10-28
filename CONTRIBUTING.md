@@ -1,6 +1,6 @@
 # Geliştirme ve katkı rehberi
 
-Folio, yerel Markdown dosyalarını koruyarak görsel düzenleme sunan bir masaüstü uygulamasıdır. Değişikliklerin kapsamı [teknik isterlerle](PROJE_TEKNIK_ISTER_DOKUMANI.md) ve [açık kabul maddeleriyle](docs/TESLIMAT_KONTROLU.md) birlikte değerlendirilir.
+Folio, yerel Markdown dosyalarını koruyarak görsel düzenleme sunan bir masaüstü uygulamasıdır. Değişikliklerin kapsamı [açık kabul maddeleriyle](docs/TESLIMAT_KONTROLU.md) birlikte değerlendirilir.
 
 ## Yerel kurulum
 
