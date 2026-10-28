@@ -14,7 +14,7 @@
 
 [Features](#features) · [Getting started](#getting-started) · [Development](#development) · [Testing](#testing) · [Packaging](#packaging) · [Contributing](CONTRIBUTING.md)
 
-![Folio desktop app](docs/screenshots/folio-packaged.png)
+![Folio in light and dark themes](docs/screenshots/folio-hero.png)
 
 </div>
 

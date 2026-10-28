@@ -14,7 +14,7 @@
 
 [Özellikler](#özellikler) · [Başlarken](#başlarken) · [Geliştirme](#geliştirme) · [Testler](#testler) · [Paketleme](#paketleme) · [Katkı rehberi](CONTRIBUTING.tr.md)
 
-![Folio masaüstü uygulaması](docs/screenshots/folio-packaged.png)
+![Folio açık ve koyu temada](docs/screenshots/folio-hero.png)
 
 </div>
 
