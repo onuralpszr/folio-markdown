@@ -10,7 +10,11 @@ self.onmessage = (
     targetIndex?: number;
   }>,
 ) => {
-  const { source, query, regex, caseSensitive, replacement, wholeWord, targetIndex } = event.data;
+  const { source, query, regex, caseSensitive, wholeWord, targetIndex } = event.data;
+  // Plain text replacements must not expand $ patterns such as $$ or $&.
+  const replacement = regex
+    ? event.data.replacement
+    : event.data.replacement?.replaceAll('$', '$$$$');
   try {
     let pattern = regex ? query : query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     if (wholeWord) pattern = `(?<![\\p{L}\\p{N}_])(?:${pattern})(?![\\p{L}\\p{N}_])`;
