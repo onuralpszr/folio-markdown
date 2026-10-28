@@ -1,0 +1,60 @@
+name: Desktop validation and packages
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: macos-latest, platform: mac, arch: arm64 }
+          - { os: macos-15-intel, platform: mac, arch: x64 }
+          - { os: windows-latest, platform: win, arch: x64 }
+          - { os: windows-11-arm, platform: win, arch: arm64 }
+          - { os: ubuntu-24.04, platform: linux, arch: x64 }
+          - { os: ubuntu-24.04-arm, platform: linux, arch: arm64 }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: npm }
+      - run: npm ci
+      - run: node scripts/icons.mjs
+      - run: npm test
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: node scripts/release-metadata.mjs
+      - if: runner.os != 'Linux'
+        run: npx playwright test
+      - if: runner.os == 'Linux'
+        run: xvfb-run -a npx playwright test
+      - name: Build local packages
+        if: runner.os != 'Linux'
+        run: npx electron-builder --${{ matrix.platform }} --${{ matrix.arch }} --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Build Linux packages with bundled offline documentation
+        if: runner.os == 'Linux'
+        run: npx electron-builder --linux --${{ matrix.arch }} --publish never --config.extraMetadata.homepage=file:///opt/Folio/resources/README.md
+      - run: node scripts/release-metadata.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Folio-${{ matrix.platform }}-${{ matrix.arch }}
+          path: |
+            release/*.dmg
+            release/*.zip
+            release/*.exe
+            release/*.AppImage
+            release/*.deb
+            release/*.yml
+            release/SHA256SUMS
+            release/sbom.json
+            release/THIRD_PARTY_LICENSES.txt
+            !release/builder-debug.yml
+          retention-days: 14

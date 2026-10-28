@@ -1,0 +1,19 @@
+node_modules/
+dist/
+dist-electron/
+release/
+test-results/
+playwright-report/
+.DS_Store
+*.log
+
+# Local credentials and generated notices
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+build/THIRD_PARTY_LICENSES.txt
+build/Folio.iconset/

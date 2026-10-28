@@ -1,0 +1,8 @@
+node_modules
+dist
+dist-electron
+release
+public/fonts
+package-lock.json
+test-results
+docs/screenshots

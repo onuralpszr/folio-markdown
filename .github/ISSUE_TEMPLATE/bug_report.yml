@@ -1,0 +1,30 @@
+name: Hata bildirimi
+description: Yeniden üretilebilir bir uygulama sorununu bildirin.
+labels: [bug]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Beklenen ve gerçekleşen davranış
+      description: Hangi işlemi yaptınız ve ne oldu?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Yeniden üretme adımları
+      description: Gerekirse kişisel bilgi içermeyen küçük bir Markdown örneği ekleyin.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Ortam
+      placeholder: İşletim sistemi, mimari, Folio sürümü, kurulum veya portable
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Ek bilgiler
+      description: Ekran görüntüsü veya hata metni ekleyebilirsiniz. Kişisel belgeleri ve erişim bilgilerini paylaşmayın.

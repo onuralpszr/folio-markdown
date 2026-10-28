@@ -1,0 +1,240 @@
+.language-setting {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 15px;
+}
+.language-setting select {
+  min-width: 150px;
+}
+.context-dismiss {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+}
+.context-menu {
+  position: fixed;
+  min-width: 220px;
+}
+.tab.pinned {
+  border-top-color: #a9b78c;
+}
+.folder-row {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+.folder-row:hover {
+  background: var(--hover);
+}
+.folder-row > button:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+  text-align: left;
+  padding: 8px 4px;
+  font-size: 10px;
+}
+.folder-row > button:first-child > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.folder-row > button:last-child {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  padding: 5px;
+}
+.folder-inline-menu {
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  margin: 2px 0 8px;
+}
+.folder-inline-menu > button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 7px;
+  font-size: 10px;
+  border-radius: 3px;
+}
+.folder-inline-menu > button:hover {
+  background: var(--hover);
+}
+.folder-search-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  padding: 7px 10px;
+  color: var(--accent);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  margin: 0 0 8px;
+}
+.folder-search-fields {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+}
+.folder-search-fields label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  color: var(--muted);
+  gap: 6px;
+}
+.folder-search-results section {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 14px;
+}
+.folder-search-results header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--panel);
+  font-size: 11px;
+  padding: 9px;
+}
+.folder-search-results header > button {
+  color: var(--accent);
+}
+.folder-search-results header > span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 9px;
+}
+.folder-search-results header > small {
+  color: #b58d51;
+  font-size: 8px;
+}
+.folder-search-results section > div {
+  display: flex;
+  gap: 14px;
+  padding: 7px 12px;
+  font-size: 10px;
+  border-top: 1px solid var(--line);
+}
+.folder-search-results section > div > span {
+  color: var(--muted);
+  width: 24px;
+}
+.folder-search-results code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.about-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+.about-brand strong {
+  display: block;
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -2px;
+  color: var(--text);
+}
+.about-brand span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+.modal-body > hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.about-brand ~ .settings-actions {
+  margin: 15px 0;
+}
+.gantt-start {
+  display: grid;
+  gap: 5px;
+}
+.duration-input {
+  display: flex;
+  gap: 4px;
+}
+.duration-input input {
+  width: 60px;
+}
+.duration-input select {
+  max-width: 80px;
+}
+.graph-canvas .react-flow__node-default {
+  transition: box-shadow 0.1s;
+}
+.graph-canvas .react-flow__node-default:hover {
+  box-shadow: 0 3px 12px #52673922;
+}
+.table-context {
+  max-height: 90px;
+  overflow: auto;
+}
+.diagram-types > button:focus-visible {
+  outline: 2px solid var(--accent);
+}
+.error-message {
+  white-space: pre-wrap;
+}
+.ProseMirror img.ProseMirror-separator {
+  display: inline;
+  height: auto;
+  margin: 0;
+}
+.statusbar .browser-badge {
+  letter-spacing: 0;
+}
+.matrix-panel,
+.formula-export {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.matrix-panel summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.matrix-panel input[type='number'] {
+  width: 60px;
+  margin: 0 8px;
+}
+.matrix-panel .formula-tools {
+  margin-top: 12px;
+  align-items: center;
+}
+.formula-export .formula-tools {
+  margin-top: 10px;
+}
+.formula-export [role='status']:empty {
+  display: none;
+}
+.settings-import-preview {
+  align-items: start;
+}
+.settings-import-preview dl > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 5px 0;
+}
+.settings-import-preview dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
